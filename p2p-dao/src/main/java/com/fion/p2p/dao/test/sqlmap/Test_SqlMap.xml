@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fion.p2p.dao.test.TestDAO" >
+  <resultMap id="BaseResultMap" type="com.fion.p2p.vo.test.TestVO" >
+    <id column="TEST_ID" property="testId" jdbcType="INTEGER" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    TEST_ID, NAME, CREATE_DATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_sm_test
+    where TEST_ID = #{testId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_sm_test
+    where TEST_ID = #{testId,jdbcType=INTEGER}
+  </delete>
+  
+  
+  
+  <insert id="insert" parameterType="com.fion.p2p.vo.test.TestVO" >
+    <selectKey resultType="java.lang.Integer" keyProperty="testId">
+			select last_insert_id()
+    </selectKey>
+    insert into tb_sm_test (TEST_ID, NAME,CREATE_DATE)
+    values (#{testId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fion.p2p.vo.test.TestVO" >
+  	<selectKey resultType="java.lang.Integer" keyProperty="testId">
+			select last_insert_id()
+  	</selectKey>
+    insert into tb_sm_test
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="testId != null" >
+        TEST_ID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="testId != null" >
+        #{testId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+       <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fion.p2p.vo.test.TestVO" >
+    update tb_sm_test
+    <set >
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where TEST_ID = #{testId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fion.p2p.vo.test.TestVO" >
+    update tb_sm_test
+    set NAME = #{name,jdbcType=VARCHAR},CREATE_DATE = #{createDate,jdbcType=TIMESTAMP}
+    where TEST_ID = #{testId,jdbcType=INTEGER}
+  </update>
+</mapper>

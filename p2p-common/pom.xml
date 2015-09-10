@@ -1,0 +1,45 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.fion</groupId>
+		<artifactId>p2p-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../p2p-parent/pom.xml</relativePath>
+	</parent>
+<!-- 	<groupId>com.fion</groupId> -->
+	<artifactId>p2p-common</artifactId>
+<!-- 	<version>0.0.1-SNAPSHOT</version> -->
+	<name>p2p-common</name>
+	<description>p2p-common</description>
+
+	<build>
+		<!-- we dont want the version to be part of the generated war file name -->
+		<!-- <finalName>${project.artifactId}</finalName> -->
+		<plugins>
+			<!-- maven-compiler-plugin是用来编译Java代码的插件。 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>${jdk.version}</source>
+					<target>${jdk.version}</target>
+					<encoding>${project.build.sourceEncoding}</encoding>
+					<showWarnings>true</showWarnings>
+					<!-- 使用maven打包时,把WEB-INF\lib目录下的jar包也打包进去 -->
+					<compilerArguments>
+						<extdirs>src\main\webapp\WEB-INF\lib</extdirs>
+					</compilerArguments>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.codehaus.plexus</groupId>
+						<artifactId>plexus-compiler-javac</artifactId>
+						<version>2.3</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+		</plugins>
+	</build>
+</project>

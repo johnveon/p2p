@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:p="http://www.springframework.org/schema/p" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" xmlns:task="http://www.springframework.org/schema/task" xsi:schemaLocation="
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-3.0.xsd
+http://www.springframework.org/schema/task 
+http://www.springframework.org/schema/task/spring-task-3.0.xsd 
+">
+
+
+	<!-- my redis tool -->
+    <context:component-scan base-package="com.fion.redis" />
+<!-- 	<bean id="redisSentinelConfiguration" -->
+<!-- 		class="org.springframework.data.redis.connection.RedisSentinelConfiguration"> -->
+<!-- 		<property name="master"> -->
+<!-- 			<bean class="org.springframework.data.redis.connection.RedisNode"> -->
+<!-- 				<property name="name" value="mymaster"></property> -->
+<!-- 			</bean> -->
+<!-- 		</property> -->
+
+<!-- 		<property name="sentinels"> -->
+<!-- 			<set> -->
+<!-- 				<bean class="org.springframework.data.redis.connection.RedisNode"> -->
+<!-- 					<constructor-arg name="host" value="${master.redis.host}"></constructor-arg> -->
+<!-- 					<constructor-arg name="port" value="${master.redis.sentinel.port}"></constructor-arg> -->
+<!-- 				</bean> -->
+
+<!-- 				<bean class="org.springframework.data.redis.connection.RedisNode"> -->
+<!-- 					<constructor-arg name="host" value="${slave.redis.host}" /> -->
+<!-- 					<constructor-arg name="port" value="${slave.redis.sentinel.port}" /> -->
+<!-- 				</bean> -->
+<!-- 			</set> -->
+<!-- 		</property> -->
+<!-- 	</bean> -->
+
+<!-- 	<bean id="jeidsConnectionFactory" -->
+<!-- 		class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"> -->
+<!-- 		<constructor-arg ref="redisSentinelConfiguration" /> -->
+<!-- 	</bean> -->
+
+
+<!-- 	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate" -->
+<!-- 			p:connection-factory-ref="jeidsConnectionFactory"> -->
+<!-- 	</bean> -->
+
+	<!-- jedisConnectionFactory -->
+	<bean id="jedisConnectionFactory"
+		  class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
+		  p:host-name="${master.redis.host}" p:port="${master.redis.port}" p:password="" />
+
+    <!-- spring redis tool -->
+	<bean id="redisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate"
+		p:connection-factory-ref="jedisConnectionFactory"
+		 />  
+
+<!-- p:keySerializer-ref="keySerializer" -->
+<!-- p:valueSerializer-ref="valueSerializer" -->
+<!-- 	<bean id="keySerializer" class="org.springframework.data.redis.serializer.StringRedisSerializer"></bean> -->
+<!-- 	<bean id="valueSerializer" class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"></bean> -->
+	
+
+</beans>

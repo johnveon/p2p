@@ -1,0 +1,290 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.fion</groupId>
+	<artifactId>p2p-parent</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>p2p-parent</name>
+	<description>p2p-parent</description>
+
+	<modules>
+		<module>../p2p-common</module>
+		<module>../p2p-interface</module>
+		<module>../p2p-service</module>
+		<module>../p2p-vo</module>
+		<module>../p2p-dao</module>
+		<module>../p2p-jzmq</module>
+		<module>../p2p-web</module>
+		<module>../p2p-broker</module>
+		<module>../p2p-worker</module>
+	</modules>
+
+
+	<dependencies>
+
+		<!-- mysql driver start -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql-connector-java.version}</version>
+		</dependency>
+
+		<!-- spring -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<!-- spring-jdbc -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<!-- spring aop -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>${aspectjrt.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>${aspectjrt.version}</version>
+		</dependency>
+
+		<!-- mybatis -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>${mybatis.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>${mybatis-spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.pagehelper</groupId>
+			<artifactId>pagehelper</artifactId>
+			<version>${pagehelper.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.foundationdb</groupId>
+			<artifactId>fdb-sql-parser</artifactId>
+			<version>${fdb-sql-parser.version}</version>
+		</dependency>
+		<!-- spring-webmvc -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<!-- druid datasource -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>${druid.version}</version>
+		</dependency>
+
+		<!-- 避免IEjson返回出现下载 -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+
+		<!-- json -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+
+		<!--文件上传 -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>${commons-fileupload.version}</version>
+		</dependency>
+		<!-- @ContextConfiguration(locations = {}) 测试用 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<!-- junit 测试用 -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<optional>true</optional>
+		</dependency>
+
+		<!-- @RunWith(SpringJUnit4ClassRunner.class) 测试用 -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit-dep</artifactId>
+			<version>${junit-dep.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- servlet api -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>${servlet-api.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<!-- json -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>${fastjson.version}</version>
+		</dependency>
+
+		<!-- jedis spring-data-redis -->
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+			<version>${jedis.version}</version>
+		</dependency>
+
+        
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-redis</artifactId>
+			<version>${spring-data-redis.version}</version>
+		</dependency>
+		
+		<!-- slf4j -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+
+		<!-- 激活profiles.profile.activeByDefault -->
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>false</filtering>
+				<includes>
+					<include>spring.xml</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+				<excludes>
+					<exclude>spring.xml</exclude>
+				</excludes>
+			</resource>
+		</resources>
+
+	</build>
+
+	<!-- 不同环境的配置 -->
+	<profiles>
+		<profile>
+			<id>sit</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<profiles.activation>sit</profiles.activation>
+
+				<!-- broker -->
+				<broker.address>tcp://localhost:5555</broker.address>
+
+				<!-- jdbc -->
+				<dialect>mysql</dialect>
+				<driverClassName>com.mysql.jdbc.Driver</driverClassName>
+				<validationQuery>SELECT 1</validationQuery>
+
+				<master.jdbc.url><![CDATA[jdbc:mysql://127.0.0.1:3306/dynamicds?useUnicode=true&amp;characterEncoding=UTF-8&amp;allowMultiQueries=true&amp;zeroDateTimeBehavior=convertToNull]]></master.jdbc.url>
+				<master.jdbc.username>root</master.jdbc.username>
+				<master.jdbc.password>123456</master.jdbc.password>
+
+				<slave.jdbc.url><![CDATA[jdbc:mysql://192.168.146.130:3306/dynamicds?useUnicode=true&amp;characterEncoding=UTF-8&amp;allowMultiQueries=true&amp;zeroDateTimeBehavior=convertToNull]]></slave.jdbc.url>
+				<slave.jdbc.username>root</slave.jdbc.username>
+				<slave.jdbc.password>123456</slave.jdbc.password>
+
+				<!-- redis -->
+				<master.redis.host>192.168.0.102</master.redis.host>
+				<master.redis.port>6379</master.redis.port>
+				<master.redis.sentinel.port>26379</master.redis.sentinel.port>
+
+				<slave.redis.host>192.168.146.130</slave.redis.host>
+				<slave.redis.port>6379</slave.redis.port>
+				<slave.redis.sentinel.port>26379</slave.redis.sentinel.port>
+
+				<!-- log -->
+				<web.log>web_log</web.log>
+				<worker.log>worker_log</worker.log>
+				
+
+			</properties>
+		</profile>
+
+	</profiles>
+
+	<!-- 统一版本号 -->
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<jdk.version>1.7</jdk.version>
+		<spring.version>4.2.0.RELEASE</spring.version>
+		<junit-dep.version>4.5</junit-dep.version>
+		<junit.version>4.11</junit.version>
+		<jackson.version>2.6.0</jackson.version>
+		<commons-fileupload.version>1.3.1</commons-fileupload.version>
+		<servlet-api.version>2.5</servlet-api.version>
+		<fastjson.version>1.1.43.android</fastjson.version>
+		<mybatis.version>3.2.8</mybatis.version>
+		<mybatis-spring.version>1.2.2</mybatis-spring.version>
+		<pagehelper.version>3.2.3</pagehelper.version>
+		<fdb-sql-parser.version>1.4.0</fdb-sql-parser.version>
+		<mysql-connector-java.version>5.1.29</mysql-connector-java.version>
+		<aspectjrt.version>1.8.6</aspectjrt.version>
+		<junit.version>4.11</junit.version>
+		<junit-dep.version>4.9</junit-dep.version>
+		<druid.version>1.0.9</druid.version>
+		<spring-data-redis.version>1.6.0.RELEASE</spring-data-redis.version>
+		<jedis.version>2.7.3</jedis.version>
+		<slf4j.version>1.6.1</slf4j.version>
+		
+
+
+
+	</properties>
+</project>
