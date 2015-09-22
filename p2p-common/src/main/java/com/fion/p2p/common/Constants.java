@@ -21,6 +21,8 @@ public class Constants {
 	public static final String DATEFORMAT = "yyyy-MM-dd HH:mm:ss";
 	// 冒号标识
 	public static final String COLON = ":";
+	//点号标识
+	public static final String DOT = ".";
 	// redis过期前缀标识
 	private static final String EXPIRD = "expird";
 	// redis不过期前缀标识
@@ -34,15 +36,15 @@ public class Constants {
 	 */
 	public static final class WorkerAndMethod {
 		// worker标识
-		public static final String TESTWORKER = "com.fion.p2p.worker.test.TestWorker";
+		public static final String TESTWORKER = "com.fion.p2p.worker.test.TestWorker" + DOT;
 		// worker方法标识
-		public static final String TESTWORKER_GETBYID = "com.fion.p2p.worker.test.TestWorker.getById";
+		public static final String TESTWORKER_GETBYID = TESTWORKER + "getById";
 		// worker方法标识
-		public static final String TESTWORKER_ADD = "com.fion.p2p.worker.test.TestWorker.add";
+		public static final String TESTWORKER_ADD = TESTWORKER + "add";
 		// worker方法标识
-		public static final String TESTWORKER_DElBYID = "com.fion.p2p.worker.test.TestWorker.delById";
+		public static final String TESTWORKER_DElBYID = TESTWORKER + "delById";
 		// worker方法标识
-		public static final String TESTWORKER_UPDATEBYID = "com.fion.p2p.worker.test.TestWorker.updateById";
+		public static final String TESTWORKER_UPDATEBYID = TESTWORKER + "updateById";
 
 	}
 
