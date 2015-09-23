@@ -150,7 +150,8 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
 			<version>${servlet-api.version}</version>
-			<scope>compile</scope>
+			<!-- 要有启动tomcat不报错 -->
+			<scope>provided</scope>
 		</dependency>
 		<!-- json -->
 		<dependency>
@@ -282,7 +283,7 @@
 		<spring-data-redis.version>1.6.0.RELEASE</spring-data-redis.version>
 		<jedis.version>2.7.3</jedis.version>
 		<slf4j.version>1.6.1</slf4j.version>
-		
+		<tomcat7-maven-plugin.version>2.2</tomcat7-maven-plugin.version>
 
 
 

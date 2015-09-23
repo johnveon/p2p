@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 import com.fion.p2p.common.Constants;
@@ -33,12 +34,21 @@ public class TestController {
 	@Autowired
 	private RedisTool redisTool;
 	
+	
+	@RequestMapping(method={RequestMethod.GET,RequestMethod.POST})
+	@ResponseBody
+	public String defaultTestController(){
+		logger.info("@RequestMapping没有value=\"\"，默认进入的方法！");
+		return null;
+	}
+	
 	/**
 	 * 获取testvo信息，根据id
 	 * @return
 	 * @author zhoufe 2015-9-9 下午11:28:02
 	 */
 	@RequestMapping(value="/getById",method={RequestMethod.GET,RequestMethod.POST})
+	@ResponseBody
 	public String getById(){
 		
 		String id = "1";
@@ -47,7 +57,7 @@ public class TestController {
 		
 		logger.info("testInfo="+testInfo);
 		
-		return null;
+		return testInfo;
 	}
 
 	/**
@@ -78,6 +88,7 @@ public class TestController {
 	 * @author zhoufe 2015-9-9 下午11:29:56
 	 */
 	@RequestMapping(value="/delById",method={RequestMethod.GET,RequestMethod.POST})
+	@ResponseBody
 	public String delById(){
 		Map<String, String> paramter = new HashMap<String, String>();
 		String id = "1";
@@ -94,6 +105,7 @@ public class TestController {
 	 * @author zhoufe 2015-9-9 下午11:30:22
 	 */
 	@RequestMapping(value="/add",method={RequestMethod.GET,RequestMethod.POST})
+	@ResponseBody
 	public String add(){
 		TestVO testVO = new TestVO(null,"fion",new Date());
 		String testVOStr = JSON.toJSONStringWithDateFormat(testVO, Constants.DATEFORMAT);
@@ -119,6 +131,7 @@ public class TestController {
 	 * @author zhoufe 2015-9-9 下午11:30:36
 	 */
 	@RequestMapping(value="/updateById",method={RequestMethod.GET,RequestMethod.POST})
+	@ResponseBody
 	public String updateById(){
 		TestVO testVO = new TestVO();
 		testVO.setTestId(1);

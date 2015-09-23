@@ -43,20 +43,35 @@
 				<artifactId>sysdeo-tomcat-maven-plugin</artifactId>
 				<version>1.1</version>
 			</plugin>
-
+			
+				<!-- tomcat6 -->
+<!-- 			<plugin> -->
+<!-- 				<groupId>org.codehaus.mojo</groupId> -->
+<!-- 				<artifactId>tomcat-maven-plugin</artifactId> -->
+<!-- 				<version>1.1</version> -->
+<!-- 				<configuration> -->
+<!-- 					<url>http://localhost:8081/manager/text</url> -->
+<!-- 					<server>tomcat6</server> -->
+<!-- 					<username>admin</username> -->
+<!-- 					<password>admin</password> -->
+<!-- 					<port>8081</port> -->
+<!-- 					<uriEncoding>UTF-8</uriEncoding> -->
+<!-- 				</configuration> -->
+<!-- 			</plugin> -->
+			
+			<!-- tomcat7 -->
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>tomcat-maven-plugin</artifactId>
-				<version>1.1</version>
-				<configuration>
-					<url>http://localhost:8081/manager/text</url>
-					<server>tomcat6</server>
-					<username>admin</username>
-					<password>admin</password>
-					<port>8081</port>
-					<uriEncoding>UTF-8</uriEncoding>
-				</configuration>
-			</plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>${tomcat7-maven-plugin.version}</version>
+                <configuration>
+                    <port>8081</port>
+<!--                     <path>/mgr</path> -->
+                    <uriEncoding>UTF-8</uriEncoding>
+<!--                     <finalName>mgr</finalName> -->
+                    <server>tomcat7</server>
+                </configuration>
+            </plugin>
 
 			<!-- we dont want the version to be part of the generated war file name -->
 			<!-- <finalName>${project.artifactId}</finalName> -->

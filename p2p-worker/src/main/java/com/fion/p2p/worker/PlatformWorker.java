@@ -5,11 +5,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class StartWorker {
+public class PlatformWorker {
 	/**
 	 * Logger for this class
 	 */
-	private static final Logger logger = LoggerFactory.getLogger(StartWorker.class);
+	private static final Logger logger = LoggerFactory.getLogger(PlatformWorker.class);
 
 	/**
 	 * @param args
