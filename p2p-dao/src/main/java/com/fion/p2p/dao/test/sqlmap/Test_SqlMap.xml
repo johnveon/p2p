@@ -9,18 +9,18 @@
   <sql id="Base_Column_List" >
     TEST_ID, NAME, CREATE_DATE
   </sql>
+  
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from tb_sm_test
     where TEST_ID = #{testId,jdbcType=INTEGER}
   </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from tb_sm_test
     where TEST_ID = #{testId,jdbcType=INTEGER}
   </delete>
-  
-  
   
   <insert id="insert" parameterType="com.fion.p2p.vo.test.TestVO" >
     <selectKey resultType="java.lang.Integer" keyProperty="testId">
@@ -29,6 +29,7 @@
     insert into tb_sm_test (TEST_ID, NAME,CREATE_DATE)
     values (#{testId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP})
   </insert>
+  
   <insert id="insertSelective" parameterType="com.fion.p2p.vo.test.TestVO" >
   	<selectKey resultType="java.lang.Integer" keyProperty="testId">
 			select last_insert_id()
@@ -57,6 +58,7 @@
       </if>
     </trim>
   </insert>
+  
   <update id="updateByPrimaryKeySelective" parameterType="com.fion.p2p.vo.test.TestVO" >
     update tb_sm_test
     <set >
@@ -69,9 +71,11 @@
     </set>
     where TEST_ID = #{testId,jdbcType=INTEGER}
   </update>
+  
   <update id="updateByPrimaryKey" parameterType="com.fion.p2p.vo.test.TestVO" >
     update tb_sm_test
     set NAME = #{name,jdbcType=VARCHAR},CREATE_DATE = #{createDate,jdbcType=TIMESTAMP}
     where TEST_ID = #{testId,jdbcType=INTEGER}
   </update>
+  
 </mapper>

@@ -25,7 +25,7 @@ public class ITestController {
 	
 	@Test
 	public void testAdd(){
-		testController.add();
+		testController.add(null);
 	}
 	
 	@Test

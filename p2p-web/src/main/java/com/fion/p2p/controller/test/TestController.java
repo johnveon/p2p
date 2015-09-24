@@ -35,6 +35,13 @@ public class TestController {
 	private RedisTool redisTool;
 	
 	
+//	@InitBinder
+//    public void initBinder(WebDataBinder binder) {
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        dateFormat.setLenient(false);
+//        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+//    }
+	
 	@RequestMapping(method={RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
 	public String defaultTestController(){
@@ -75,7 +82,7 @@ public class TestController {
 		if(testInfo == null ){
 			Map<String, String> ret =  workerTool.callWorker(WorkerAndMethod.TESTWORKER, WorkerAndMethod.TESTWORKER_GETBYID,paramter);
 			if(ret != null 
-					&& MapKey.SUCCESS.equals((ret.containsKey(MapKey.SUCCESS)))){
+					&& ret.containsKey(MapKey.SUCCESS)){
 				testInfo = redisTool.get(redisKey);
 			}
 		}
@@ -106,8 +113,12 @@ public class TestController {
 	 */
 	@RequestMapping(value="/add",method={RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
-	public String add(){
+	public String add(TestVO testParamVO){
 		TestVO testVO = new TestVO(null,"fion",new Date());
+		
+		if(testParamVO != null){
+			testVO.setCreateDate(testParamVO.getCreateDate());
+		}
 		String testVOStr = JSON.toJSONStringWithDateFormat(testVO, Constants.DATEFORMAT);
 		Map<String, String> paramter = new HashMap<String, String>();
 		paramter.put(MapKey.TESTVO, testVOStr);

@@ -2,6 +2,8 @@ package com.fion.p2p.vo.test;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 public class TestVO {
     /**
@@ -12,6 +14,7 @@ public class TestVO {
 
     private String name;
     
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss") 
     private Date createDate;
     
     public Date getCreateDate() {
