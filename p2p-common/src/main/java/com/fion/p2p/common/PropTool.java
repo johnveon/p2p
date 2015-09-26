@@ -3,6 +3,7 @@ package com.fion.p2p.common;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,5 +40,9 @@ public class PropTool extends
 	// static method for accessing context properties
 	public static Object getContextProperty(String name) {
 		return ctxPropertiesMap.get(name);
+	}
+	
+	public static Set<String> getContextPropertyKeySet() {
+		return ctxPropertiesMap.keySet();
 	}
 }

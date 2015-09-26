@@ -78,7 +78,7 @@ public class TestController {
 		paramter.put(MapKey.ID, id);
 		String redisKey = Constants.UN_EXPIRD_KEY(TestVO.class, id);
 		String testInfo = redisTool.get(redisKey);
-		//testInfo = null;
+		testInfo = null;
 		if(testInfo == null ){
 			Map<String, String> ret =  workerTool.callWorker(WorkerAndMethod.TESTWORKER, WorkerAndMethod.TESTWORKER_GETBYID,paramter);
 			if(ret != null 

@@ -228,6 +228,13 @@
 
 				<!-- broker -->
 				<broker.address>tcp://localhost:5555</broker.address>
+				<broker.address.backup1>tcp://localhost:5556</broker.address.backup1>
+				<broker.address.backup2>tcp://localhost:5557</broker.address.backup2>
+				<broker.address.backup3>tcp://localhost:5558</broker.address.backup3>
+				<broker.address.backup4>tcp://localhost:5559</broker.address.backup4>
+				
+				
+				
 
 				<!-- jdbc -->
 				<dialect>mysql</dialect>

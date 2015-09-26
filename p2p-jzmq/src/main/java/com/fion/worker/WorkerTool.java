@@ -11,7 +11,6 @@ import org.zeromq.ZMsg;
 
 import com.alibaba.fastjson.JSON;
 import com.fion.p2p.common.Constants;
-import com.fion.p2p.common.PropTool;
 
 @Component
 public class WorkerTool {
@@ -33,8 +32,10 @@ public class WorkerTool {
 		
 		Map<String, String> retParameter = null;
 		
-		String BORKER_ADDRESS = (String)PropTool.getContextProperty(Constants.BORKER_ADDRESS);
-        MdCliApi clientSession = new MdCliApi(BORKER_ADDRESS, false);
+		String aliveBroker =  Constants.getAliveBroker();
+        logger.info("调用的broker-->"+aliveBroker);
+		
+        MdCliApi clientSession = new MdCliApi(aliveBroker, true);
         ZMsg request = new ZMsg();
         logger.info("调用-->"+method);
         

@@ -1,5 +1,13 @@
 package com.fion.p2p.common;
 
+import java.io.IOException;
+import java.net.Socket;
+import java.net.UnknownHostException;
+import java.util.Set;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.alibaba.fastjson.JSON;
 
 /**
@@ -9,10 +17,16 @@ import com.alibaba.fastjson.JSON;
  * 
  */
 public class Constants {
+	/**
+	 * Logger for this class
+	 */
+	private static final Logger logger = LoggerFactory.getLogger(Constants.class);
+
 	// worker 调试开关
 	public static final String V = "-v";
 	// 配置文件的属性键
 	public static final String BORKER_ADDRESS = "borker.address";
+	public static final String BORKER_ADDRESS_BACKUP = "broker.address.backup";
 	// 主库标识
 	public static final String MASTER = "master";
 	// 从库标识
@@ -35,6 +49,11 @@ public class Constants {
 	 * 
 	 */
 	public static final class WorkerAndMethod {
+		/**
+		 * Logger for this class
+		 */
+		//private static final Logger logger = LoggerFactory.getLogger(WorkerAndMethod.class);
+
 		// worker标识
 		public static final String TESTWORKER = "com.fion.p2p.worker.test.TestWorker" + DOT;
 		// worker方法标识
@@ -55,6 +74,11 @@ public class Constants {
 	 * 
 	 */
 	public static final class MapKey {
+		/**
+		 * Logger for this class
+		 */
+		//private static final Logger logger = LoggerFactory.getLogger(MapKey.class);
+
 		//testVO标识
 		public static final String TESTVO = "testVO";
 		//成功文字标识
@@ -119,5 +143,76 @@ public class Constants {
 	public static String getJSONString(Object vo) {
 		return JSON.toJSONStringWithDateFormat(vo, Constants.DATEFORMAT);
 	}
+	
+	
+	public static String getAliveBroker() {
+		//1.用默认地址先telnet
+		String retBroker = null;
+		String defaultBroker = (String)PropTool.getContextProperty(Constants.BORKER_ADDRESS);
+		boolean isAlive= checkAliveBroker(defaultBroker);
+		if(isAlive){
+			retBroker = defaultBroker;
+		}else{
+			//2.如果telnet不通
+			//3.从备选的borker地址选一个telnet通的
+			Set<String> keySet = PropTool.getContextPropertyKeySet();
+			for(String brokerKey : keySet){
+				if(brokerKey.startsWith(Constants.BORKER_ADDRESS_BACKUP)){
+					String checkBroker = (String)PropTool.getContextProperty(brokerKey);
+					boolean isAliveTmp= checkAliveBroker(checkBroker);
+					if(isAliveTmp){
+						retBroker = checkBroker;
+						break;
+					}
+				}
+			}
+		}
+		return retBroker;
+	}
 
+	public static boolean checkAliveBroker(String broker) {
+
+		boolean isAlive = false;
+		//默认地址
+		//String broker = "localhost:6379";//(String)PropTool.getContextProperty(Constants.BORKER_ADDRESS);
+		if(broker != null && !"".equals(broker)){
+			String[] hostPort = broker.split(":");
+			if(hostPort != null && hostPort.length == 3){
+				String host = hostPort[1];
+				host = host.replaceAll("//", "");
+				String port = hostPort[2];
+				Socket socket = null;
+				try {
+					socket = new Socket(host, Integer.parseInt(port));
+					isAlive = true;
+				} catch (NumberFormatException e) {
+					logger.info(broker+"地址telnet端口不通！");
+					e.printStackTrace();
+				} catch (UnknownHostException e) {
+					logger.info(broker+"%s地址telnet主机不通！");
+					e.printStackTrace();
+				} catch (IOException e) {
+					logger.info(broker+"地址telnet不通！");
+					e.printStackTrace();
+				}finally{
+					if(socket != null){
+						try {
+							socket.close();
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+				}
+			}else{
+				logger.info(broker+"borker地址格式不正确！");
+			}
+		}else{
+			logger.info("borker地址不能为空！");
+		}
+		return isAlive;
+	}
+
+	public static void main(String[] args) {
+		System.out.println(checkAliveBroker("localhost:1111"));
+	}
 }

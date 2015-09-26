@@ -32,7 +32,7 @@ public abstract class BaseWorker {
 			@Override
 			public void run() {
 				
-				MdWrkApi workerSession = new MdWrkApi(BORKER_ADDRESS,serviceName, false);
+				MdWrkApi workerSession = new MdWrkApi(BORKER_ADDRESS,serviceName, true);
 				ZMsg reply = null;
 				// 返回操作结构
 				while (!Thread.currentThread().isInterrupted()) {
